@@ -1,0 +1,19 @@
+ - hosts: dev
+   become: true
+   tasks:
+
+     - name: install httpd package
+       yum:
+         name: httpd
+         state: latest
+
+     - name: create content
+       copy:
+         content: "DEVOPS WORLD"
+         dest: /var/www/html/index.html
+
+     - name: start and enable httpd service
+       service:
+         name: httpd
+         state: started
+         enabled: yes
